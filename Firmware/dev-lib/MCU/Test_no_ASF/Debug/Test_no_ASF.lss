@@ -3,37 +3,37 @@ Test_no_ASF.elf:     file format elf32-littlearm
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000538  00400000  00400000  00008000  2**2
+  0 .text         0000053c  00400000  00400000  00008000  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .relocate     00000480  20400000  00400538  00010000  2**3
+  1 .relocate     00000480  20400000  0040053c  00010000  2**3
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00001fb4  20400480  004009b8  00010480  2**2
+  2 .bss          00001fb4  20400480  004009bc  00010480  2**2
                   ALLOC
-  3 .stack        00000404  20402434  0040296c  00010480  2**0
+  3 .stack        00000404  20402434  00402970  00010480  2**0
                   ALLOC
-  4 .heap         00000200  20402838  00402d70  00010480  2**0
+  4 .heap         00000200  20402838  00402d74  00010480  2**0
                   ALLOC
   5 .ARM.attributes 0000002f  00000000  00000000  00010480  2**0
                   CONTENTS, READONLY
   6 .comment      0000005b  00000000  00000000  000104af  2**0
                   CONTENTS, READONLY
-  7 .debug_info   000011c5  00000000  00000000  0001050a  2**0
+  7 .debug_info   000011b0  00000000  00000000  0001050a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 00000341  00000000  00000000  000116cf  2**0
+  8 .debug_abbrev 00000341  00000000  00000000  000116ba  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    0000027a  00000000  00000000  00011a10  2**0
+  9 .debug_loc    0000022c  00000000  00000000  000119fb  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_aranges 00000080  00000000  00000000  00011c8a  2**0
+ 10 .debug_aranges 00000080  00000000  00000000  00011c27  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000050  00000000  00000000  00011d0a  2**0
+ 11 .debug_ranges 00000050  00000000  00000000  00011ca7  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_macro  00015df3  00000000  00000000  00011d5a  2**0
+ 12 .debug_macro  00015df3  00000000  00000000  00011cf7  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_line   00001859  00000000  00000000  00027b4d  2**0
+ 13 .debug_line   00001851  00000000  00000000  00027aea  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    000722cb  00000000  00000000  000293a6  2**0
+ 14 .debug_str    000722c2  00000000  00000000  0002933b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_frame  000001d4  00000000  00000000  0009b674  2**2
+ 15 .debug_frame  000001d4  00000000  00000000  0009b600  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -129,7 +129,7 @@ Disassembly of section .text:
   400156:	bd10      	pop	{r4, pc}
   400158:	20400480 	.word	0x20400480
   40015c:	00000000 	.word	0x00000000
-  400160:	00400538 	.word	0x00400538
+  400160:	0040053c 	.word	0x0040053c
 
 00400164 <frame_dummy>:
   400164:	4b08      	ldr	r3, [pc, #32]	; (400188 <frame_dummy+0x24>)
@@ -149,9 +149,9 @@ Disassembly of section .text:
   400184:	4718      	bx	r3
   400186:	bf00      	nop
   400188:	00000000 	.word	0x00000000
-  40018c:	00400538 	.word	0x00400538
+  40018c:	0040053c 	.word	0x0040053c
   400190:	20400484 	.word	0x20400484
-  400194:	00400538 	.word	0x00400538
+  400194:	0040053c 	.word	0x0040053c
   400198:	00000000 	.word	0x00000000
 
 0040019c <Dummy_Handler>:
@@ -271,7 +271,7 @@ void Reset_Handler(void)
         while (1);
   400206:	e7fe      	b.n	400206 <Reset_Handler+0x66>
   400208:	20400000 	.word	0x20400000
-  40020c:	00400538 	.word	0x00400538
+  40020c:	0040053c 	.word	0x0040053c
   400210:	20400480 	.word	0x20400480
   400214:	20402434 	.word	0x20402434
   400218:	20400480 	.word	0x20400480
@@ -280,8 +280,8 @@ void Reset_Handler(void)
   400224:	20402437 	.word	0x20402437
   400228:	e000ed00 	.word	0xe000ed00
   40022c:	00400000 	.word	0x00400000
-  400230:	004003c9 	.word	0x004003c9
-  400234:	0040038d 	.word	0x0040038d
+  400230:	004003cd 	.word	0x004003cd
+  400234:	00400395 	.word	0x00400395
 
 00400238 <SystemInit>:
  * Initialize the System and update the SystemFrequency variable.
@@ -402,321 +402,316 @@ void Reset_Handler(void)
  * @param num_taps: Number of FIR taps (should be length of fir_coeffs)
  * @param dot_n: n value in fixed point Qm.n notation
  */
-void fir_int32(int32_t *input, int32_t *output, uint32_t io_length, int32_t *fir_coeffs, uint32_t num_taps, uint32_t dot_n) {
+void fir_int32(int32_t *input, int32_t *output, uint32_t io_length, int32_t *fir_coeffs, uint32_t dot_n) {
   4002dc:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
   4002e0:	b083      	sub	sp, #12
-  4002e2:	9d0c      	ldr	r5, [sp, #48]	; 0x30
-  4002e4:	f8dd a034 	ldr.w	sl, [sp, #52]	; 0x34
-           uint32_t io_index             =  0;  // Index for input and output buffers
-           uint32_t fir_index            =  0;  // Index for FIR filter
-           int64_t  fir_acc              =  0;  // FIR accumulator
-           int32_t  delay_val            =  0;  // Delayed input value
+  4002e2:	f8dd 9030 	ldr.w	r9, [sp, #48]	; 0x30
+           uint32_t io_index             =  0;    // Index for input and output buffers
+           uint32_t fir_index            =  0;    // Index for FIR filter
+           int64_t  fir_acc              =  0;    // FIR accumulator
+           int32_t  delay_val            =  0;    // Delayed input value
     
     for(io_index = 0; io_index < io_length; io_index++) {
-  4002e8:	2a00      	cmp	r2, #0
-  4002ea:	d04a      	beq.n	400382 <fir_int32+0xa6>
-  4002ec:	4693      	mov	fp, r2
-  4002ee:	4a26      	ldr	r2, [pc, #152]	; (400388 <fir_int32+0xac>)
-  4002f0:	f8d2 c000 	ldr.w	ip, [r2]
-  4002f4:	4681      	mov	r9, r0
-  4002f6:	4688      	mov	r8, r1
-  4002f8:	eb00 0b8b 	add.w	fp, r0, fp, lsl #2
-  4002fc:	eb03 0e85 	add.w	lr, r3, r5, lsl #2
+  4002e6:	2a00      	cmp	r2, #0
+  4002e8:	d04c      	beq.n	400384 <fir_int32+0xa8>
+  4002ea:	469a      	mov	sl, r3
+  4002ec:	4b27      	ldr	r3, [pc, #156]	; (40038c <fir_int32+0xb0>)
+  4002ee:	681b      	ldr	r3, [r3, #0]
+  4002f0:	4683      	mov	fp, r0
+  4002f2:	f1a1 0804 	sub.w	r8, r1, #4
+  4002f6:	eb00 0282 	add.w	r2, r0, r2, lsl #2
+  4002fa:	9200      	str	r2, [sp, #0]
         fir_acc = 0;
         delay_line[delay_line_index] = input[io_index];                                 // Copy input value to delay line
-  400300:	4611      	mov	r1, r2
-  400302:	9300      	str	r3, [sp, #0]
-        for(fir_index = 0; fir_index < num_taps; fir_index++) {                         // Convolve delay line with FIR coefficients
-            delay_val = delay_line[ mod((delay_line_index - fir_index), num_taps) ];      
+  4002fc:	4823      	ldr	r0, [pc, #140]	; (40038c <fir_int32+0xb0>)
+  4002fe:	f10a 0c50 	add.w	ip, sl, #80	; 0x50
+        for(fir_index = 0; fir_index < FIR_LEN; fir_index++) {                         // Convolve delay line with FIR coefficients
+            delay_val = delay_line[ mod((delay_line_index - fir_index), FIR_LEN) ];      
+  400302:	f8df e08c 	ldr.w	lr, [pc, #140]	; 400390 <fir_int32+0xb4>
             fir_acc += (int64_t)(delay_val * fir_coeffs[fir_index]);                    
         }
         output[io_index] = (int32_t)(fir_acc >> dot_n);                                  // Finish fixed-point math and output FIR conv result
-  400304:	f1ca 0320 	rsb	r3, sl, #32
-  400308:	9301      	str	r3, [sp, #4]
-           int64_t  fir_acc              =  0;  // FIR accumulator
-           int32_t  delay_val            =  0;  // Delayed input value
+  400306:	f1c9 0220 	rsb	r2, r9, #32
+  40030a:	9201      	str	r2, [sp, #4]
+           int64_t  fir_acc              =  0;    // FIR accumulator
+           int32_t  delay_val            =  0;    // Delayed input value
     
     for(io_index = 0; io_index < io_length; io_index++) {
         fir_acc = 0;
         delay_line[delay_line_index] = input[io_index];                                 // Copy input value to delay line
-  40030a:	f859 2b04 	ldr.w	r2, [r9], #4
-  40030e:	eb01 038c 	add.w	r3, r1, ip, lsl #2
-  400312:	605a      	str	r2, [r3, #4]
-        for(fir_index = 0; fir_index < num_taps; fir_index++) {                         // Convolve delay line with FIR coefficients
-  400314:	b38d      	cbz	r5, 40037a <fir_int32+0x9e>
-  400316:	9c00      	ldr	r4, [sp, #0]
-  400318:	4660      	mov	r0, ip
-  40031a:	2600      	movs	r6, #0
-  40031c:	4637      	mov	r7, r6
-            delay_val = delay_line[ mod((delay_line_index - fir_index), num_taps) ];      
+  40030c:	f85b 1b04 	ldr.w	r1, [fp], #4
+  400310:	eb00 0283 	add.w	r2, r0, r3, lsl #2
+  400314:	6051      	str	r1, [r2, #4]
+  400316:	f1aa 0104 	sub.w	r1, sl, #4
+  40031a:	461a      	mov	r2, r3
+           uint32_t fir_index            =  0;    // Index for FIR filter
+           int64_t  fir_acc              =  0;    // FIR accumulator
+           int32_t  delay_val            =  0;    // Delayed input value
+    
+    for(io_index = 0; io_index < io_length; io_index++) {
+        fir_acc = 0;
+  40031c:	2600      	movs	r6, #0
+  40031e:	4637      	mov	r7, r6
+        delay_line[delay_line_index] = input[io_index];                                 // Copy input value to delay line
+        for(fir_index = 0; fir_index < FIR_LEN; fir_index++) {                         // Convolve delay line with FIR coefficients
+            delay_val = delay_line[ mod((delay_line_index - fir_index), FIR_LEN) ];      
+  400320:	fba2 450e 	umull	r4, r5, r2, lr
+  400324:	1b54      	subs	r4, r2, r5
+  400326:	eb05 0454 	add.w	r4, r5, r4, lsr #1
+  40032a:	0924      	lsrs	r4, r4, #4
+  40032c:	eb04 0444 	add.w	r4, r4, r4, lsl #1
+  400330:	ebc4 04c4 	rsb	r4, r4, r4, lsl #3
+  400334:	1b14      	subs	r4, r2, r4
+  400336:	eb00 0484 	add.w	r4, r0, r4, lsl #2
             fir_acc += (int64_t)(delay_val * fir_coeffs[fir_index]);                    
-  40031e:	f854 2b04 	ldr.w	r2, [r4], #4
+  40033a:	f851 5f04 	ldr.w	r5, [r1, #4]!
+  40033e:	6864      	ldr	r4, [r4, #4]
+  400340:	fb04 f405 	mul.w	r4, r4, r5
+  400344:	1936      	adds	r6, r6, r4
+  400346:	eb47 77e4 	adc.w	r7, r7, r4, asr #31
+  40034a:	3a01      	subs	r2, #1
+           int32_t  delay_val            =  0;    // Delayed input value
     
     for(io_index = 0; io_index < io_length; io_index++) {
         fir_acc = 0;
         delay_line[delay_line_index] = input[io_index];                                 // Copy input value to delay line
-        for(fir_index = 0; fir_index < num_taps; fir_index++) {                         // Convolve delay line with FIR coefficients
-            delay_val = delay_line[ mod((delay_line_index - fir_index), num_taps) ];      
-  400322:	fbb0 f3f5 	udiv	r3, r0, r5
-  400326:	fb05 0313 	mls	r3, r5, r3, r0
-  40032a:	eb01 0383 	add.w	r3, r1, r3, lsl #2
-            fir_acc += (int64_t)(delay_val * fir_coeffs[fir_index]);                    
-  40032e:	685b      	ldr	r3, [r3, #4]
-  400330:	fb03 f202 	mul.w	r2, r3, r2
-  400334:	18b6      	adds	r6, r6, r2
-  400336:	eb47 77e2 	adc.w	r7, r7, r2, asr #31
-  40033a:	3801      	subs	r0, #1
-           int32_t  delay_val            =  0;  // Delayed input value
-    
-    for(io_index = 0; io_index < io_length; io_index++) {
-        fir_acc = 0;
-        delay_line[delay_line_index] = input[io_index];                                 // Copy input value to delay line
-        for(fir_index = 0; fir_index < num_taps; fir_index++) {                         // Convolve delay line with FIR coefficients
-  40033c:	4574      	cmp	r4, lr
-  40033e:	d1ee      	bne.n	40031e <fir_int32+0x42>
-            delay_val = delay_line[ mod((delay_line_index - fir_index), num_taps) ];      
+        for(fir_index = 0; fir_index < FIR_LEN; fir_index++) {                         // Convolve delay line with FIR coefficients
+  40034c:	4561      	cmp	r1, ip
+  40034e:	d1e7      	bne.n	400320 <fir_int32+0x44>
+  400350:	f108 0804 	add.w	r8, r8, #4
+            delay_val = delay_line[ mod((delay_line_index - fir_index), FIR_LEN) ];      
             fir_acc += (int64_t)(delay_val * fir_coeffs[fir_index]);                    
         }
         output[io_index] = (int32_t)(fir_acc >> dot_n);                                  // Finish fixed-point math and output FIR conv result
-  400340:	f1ba 0220 	subs.w	r2, sl, #32
-  400344:	fa26 f30a 	lsr.w	r3, r6, sl
-  400348:	9801      	ldr	r0, [sp, #4]
-  40034a:	fa07 f000 	lsl.w	r0, r7, r0
-  40034e:	ea43 0300 	orr.w	r3, r3, r0
-  400352:	d402      	bmi.n	40035a <fir_int32+0x7e>
-  400354:	fa47 f202 	asr.w	r2, r7, r2
-  400358:	4313      	orrs	r3, r2
-  40035a:	f8c8 3000 	str.w	r3, [r8]
+  400354:	f1b9 0120 	subs.w	r1, r9, #32
+  400358:	fa26 f209 	lsr.w	r2, r6, r9
+  40035c:	9c01      	ldr	r4, [sp, #4]
+  40035e:	fa07 f404 	lsl.w	r4, r7, r4
+  400362:	ea42 0204 	orr.w	r2, r2, r4
+  400366:	d402      	bmi.n	40036e <fir_int32+0x92>
+  400368:	fa47 f101 	asr.w	r1, r7, r1
+  40036c:	430a      	orrs	r2, r1
+  40036e:	f8c8 2000 	str.w	r2, [r8]
         delay_line_index++;                                                              
-  40035e:	f10c 0c01 	add.w	ip, ip, #1
-        if(delay_line_index >= num_taps) {                                               // Reset delay line index on overflow
-  400362:	4565      	cmp	r5, ip
-  400364:	d801      	bhi.n	40036a <fir_int32+0x8e>
+  400372:	3301      	adds	r3, #1
+        if(delay_line_index >= FIR_LEN) {                                               // Reset delay line index on overflow
             delay_line_index = 0;                                                        
-  400366:	f04f 0c00 	mov.w	ip, #0
-  40036a:	f108 0804 	add.w	r8, r8, #4
-           uint32_t io_index             =  0;  // Index for input and output buffers
-           uint32_t fir_index            =  0;  // Index for FIR filter
-           int64_t  fir_acc              =  0;  // FIR accumulator
-           int32_t  delay_val            =  0;  // Delayed input value
+  400374:	2b15      	cmp	r3, #21
+  400376:	bf28      	it	cs
+  400378:	2300      	movcs	r3, #0
+           uint32_t io_index             =  0;    // Index for input and output buffers
+           uint32_t fir_index            =  0;    // Index for FIR filter
+           int64_t  fir_acc              =  0;    // FIR accumulator
+           int32_t  delay_val            =  0;    // Delayed input value
     
     for(io_index = 0; io_index < io_length; io_index++) {
-  40036e:	45d9      	cmp	r9, fp
-  400370:	d1cb      	bne.n	40030a <fir_int32+0x2e>
-  400372:	4b05      	ldr	r3, [pc, #20]	; (400388 <fir_int32+0xac>)
-  400374:	f8c3 c000 	str.w	ip, [r3]
-  400378:	e003      	b.n	400382 <fir_int32+0xa6>
-        delay_line[delay_line_index] = input[io_index];                                 // Copy input value to delay line
-        for(fir_index = 0; fir_index < num_taps; fir_index++) {                         // Convolve delay line with FIR coefficients
-            delay_val = delay_line[ mod((delay_line_index - fir_index), num_taps) ];      
-            fir_acc += (int64_t)(delay_val * fir_coeffs[fir_index]);                    
-        }
-        output[io_index] = (int32_t)(fir_acc >> dot_n);                                  // Finish fixed-point math and output FIR conv result
-  40037a:	2300      	movs	r3, #0
-  40037c:	f8c8 3000 	str.w	r3, [r8]
-  400380:	e7f1      	b.n	400366 <fir_int32+0x8a>
+  40037a:	9a00      	ldr	r2, [sp, #0]
+  40037c:	4593      	cmp	fp, r2
+  40037e:	d1c5      	bne.n	40030c <fir_int32+0x30>
+  400380:	4a02      	ldr	r2, [pc, #8]	; (40038c <fir_int32+0xb0>)
+  400382:	6013      	str	r3, [r2, #0]
         delay_line_index++;                                                              
-        if(delay_line_index >= num_taps) {                                               // Reset delay line index on overflow
+        if(delay_line_index >= FIR_LEN) {                                               // Reset delay line index on overflow
             delay_line_index = 0;                                                        
         }
     }   
 }
-  400382:	b003      	add	sp, #12
-  400384:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
-  400388:	2040049c 	.word	0x2040049c
+  400384:	b003      	add	sp, #12
+  400386:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+  40038a:	bf00      	nop
+  40038c:	2040049c 	.word	0x2040049c
+  400390:	86186187 	.word	0x86186187
 
-0040038c <main>:
+00400394 <main>:
 
 ////////////////////////////////////////////////////////////
 
 int main(void) {
-  40038c:	b580      	push	{r7, lr}
-  40038e:	b082      	sub	sp, #8
+  400394:	b580      	push	{r7, lr}
+  400396:	b082      	sub	sp, #8
     /* Initialize the SAM system */
     SystemInit();    
-  400390:	4b09      	ldr	r3, [pc, #36]	; (4003b8 <main+0x2c>)
-  400392:	4798      	blx	r3
+  400398:	4b08      	ldr	r3, [pc, #32]	; (4003bc <main+0x28>)
+  40039a:	4798      	blx	r3
 
     /* Replace with your application code */
     while (1) {
-        fir_int32(input, output, IO_LEN, fir_coeffs, FIR_LEN, 31);
-  400394:	4d09      	ldr	r5, [pc, #36]	; (4003bc <main+0x30>)
-  400396:	f105 0758 	add.w	r7, r5, #88	; 0x58
-  40039a:	4e09      	ldr	r6, [pc, #36]	; (4003c0 <main+0x34>)
-  40039c:	2315      	movs	r3, #21
-  40039e:	9300      	str	r3, [sp, #0]
-  4003a0:	231f      	movs	r3, #31
-  4003a2:	9301      	str	r3, [sp, #4]
-  4003a4:	4638      	mov	r0, r7
-  4003a6:	f605 71f8 	addw	r1, r5, #4088	; 0xff8
-  4003aa:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
-  4003ae:	4633      	mov	r3, r6
-  4003b0:	4c04      	ldr	r4, [pc, #16]	; (4003c4 <main+0x38>)
-  4003b2:	47a0      	blx	r4
+        fir_int32(input, output, IO_LEN, fir_coeffs, 31);
+  40039c:	4d08      	ldr	r5, [pc, #32]	; (4003c0 <main+0x2c>)
+  40039e:	f105 0758 	add.w	r7, r5, #88	; 0x58
+  4003a2:	4e08      	ldr	r6, [pc, #32]	; (4003c4 <main+0x30>)
+  4003a4:	231f      	movs	r3, #31
+  4003a6:	9300      	str	r3, [sp, #0]
+  4003a8:	4638      	mov	r0, r7
+  4003aa:	f605 71f8 	addw	r1, r5, #4088	; 0xff8
+  4003ae:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
+  4003b2:	4633      	mov	r3, r6
+  4003b4:	4c04      	ldr	r4, [pc, #16]	; (4003c8 <main+0x34>)
+  4003b6:	47a0      	blx	r4
     }
-  4003b4:	e7f2      	b.n	40039c <main+0x10>
-  4003b6:	bf00      	nop
-  4003b8:	00400239 	.word	0x00400239
-  4003bc:	2040049c 	.word	0x2040049c
-  4003c0:	20400004 	.word	0x20400004
-  4003c4:	004002dd 	.word	0x004002dd
+  4003b8:	e7f4      	b.n	4003a4 <main+0x10>
+  4003ba:	bf00      	nop
+  4003bc:	00400239 	.word	0x00400239
+  4003c0:	2040049c 	.word	0x2040049c
+  4003c4:	20400004 	.word	0x20400004
+  4003c8:	004002dd 	.word	0x004002dd
 
-004003c8 <__libc_init_array>:
-  4003c8:	b570      	push	{r4, r5, r6, lr}
-  4003ca:	4e0f      	ldr	r6, [pc, #60]	; (400408 <__libc_init_array+0x40>)
-  4003cc:	4d0f      	ldr	r5, [pc, #60]	; (40040c <__libc_init_array+0x44>)
-  4003ce:	1b76      	subs	r6, r6, r5
-  4003d0:	10b6      	asrs	r6, r6, #2
-  4003d2:	bf18      	it	ne
-  4003d4:	2400      	movne	r4, #0
-  4003d6:	d005      	beq.n	4003e4 <__libc_init_array+0x1c>
-  4003d8:	3401      	adds	r4, #1
-  4003da:	f855 3b04 	ldr.w	r3, [r5], #4
-  4003de:	4798      	blx	r3
-  4003e0:	42a6      	cmp	r6, r4
-  4003e2:	d1f9      	bne.n	4003d8 <__libc_init_array+0x10>
-  4003e4:	4e0a      	ldr	r6, [pc, #40]	; (400410 <__libc_init_array+0x48>)
-  4003e6:	f000 f895 	bl	400514 <_init>
-  4003ea:	4d0a      	ldr	r5, [pc, #40]	; (400414 <__libc_init_array+0x4c>)
-  4003ec:	1b76      	subs	r6, r6, r5
-  4003ee:	10b6      	asrs	r6, r6, #2
-  4003f0:	bf18      	it	ne
-  4003f2:	2400      	movne	r4, #0
-  4003f4:	d006      	beq.n	400404 <__libc_init_array+0x3c>
-  4003f6:	3401      	adds	r4, #1
-  4003f8:	f855 3b04 	ldr.w	r3, [r5], #4
-  4003fc:	4798      	blx	r3
-  4003fe:	42a6      	cmp	r6, r4
-  400400:	d1f9      	bne.n	4003f6 <__libc_init_array+0x2e>
-  400402:	bd70      	pop	{r4, r5, r6, pc}
-  400404:	bd70      	pop	{r4, r5, r6, pc}
-  400406:	bf00      	nop
-  400408:	00400520 	.word	0x00400520
-  40040c:	00400520 	.word	0x00400520
-  400410:	00400528 	.word	0x00400528
-  400414:	00400520 	.word	0x00400520
+004003cc <__libc_init_array>:
+  4003cc:	b570      	push	{r4, r5, r6, lr}
+  4003ce:	4e0f      	ldr	r6, [pc, #60]	; (40040c <__libc_init_array+0x40>)
+  4003d0:	4d0f      	ldr	r5, [pc, #60]	; (400410 <__libc_init_array+0x44>)
+  4003d2:	1b76      	subs	r6, r6, r5
+  4003d4:	10b6      	asrs	r6, r6, #2
+  4003d6:	bf18      	it	ne
+  4003d8:	2400      	movne	r4, #0
+  4003da:	d005      	beq.n	4003e8 <__libc_init_array+0x1c>
+  4003dc:	3401      	adds	r4, #1
+  4003de:	f855 3b04 	ldr.w	r3, [r5], #4
+  4003e2:	4798      	blx	r3
+  4003e4:	42a6      	cmp	r6, r4
+  4003e6:	d1f9      	bne.n	4003dc <__libc_init_array+0x10>
+  4003e8:	4e0a      	ldr	r6, [pc, #40]	; (400414 <__libc_init_array+0x48>)
+  4003ea:	f000 f895 	bl	400518 <_init>
+  4003ee:	4d0a      	ldr	r5, [pc, #40]	; (400418 <__libc_init_array+0x4c>)
+  4003f0:	1b76      	subs	r6, r6, r5
+  4003f2:	10b6      	asrs	r6, r6, #2
+  4003f4:	bf18      	it	ne
+  4003f6:	2400      	movne	r4, #0
+  4003f8:	d006      	beq.n	400408 <__libc_init_array+0x3c>
+  4003fa:	3401      	adds	r4, #1
+  4003fc:	f855 3b04 	ldr.w	r3, [r5], #4
+  400400:	4798      	blx	r3
+  400402:	42a6      	cmp	r6, r4
+  400404:	d1f9      	bne.n	4003fa <__libc_init_array+0x2e>
+  400406:	bd70      	pop	{r4, r5, r6, pc}
+  400408:	bd70      	pop	{r4, r5, r6, pc}
+  40040a:	bf00      	nop
+  40040c:	00400524 	.word	0x00400524
+  400410:	00400524 	.word	0x00400524
+  400414:	0040052c 	.word	0x0040052c
+  400418:	00400524 	.word	0x00400524
 
-00400418 <register_fini>:
-  400418:	4b02      	ldr	r3, [pc, #8]	; (400424 <register_fini+0xc>)
-  40041a:	b113      	cbz	r3, 400422 <register_fini+0xa>
-  40041c:	4802      	ldr	r0, [pc, #8]	; (400428 <register_fini+0x10>)
-  40041e:	f000 b805 	b.w	40042c <atexit>
-  400422:	4770      	bx	lr
-  400424:	00000000 	.word	0x00000000
-  400428:	00400439 	.word	0x00400439
+0040041c <register_fini>:
+  40041c:	4b02      	ldr	r3, [pc, #8]	; (400428 <register_fini+0xc>)
+  40041e:	b113      	cbz	r3, 400426 <register_fini+0xa>
+  400420:	4802      	ldr	r0, [pc, #8]	; (40042c <register_fini+0x10>)
+  400422:	f000 b805 	b.w	400430 <atexit>
+  400426:	4770      	bx	lr
+  400428:	00000000 	.word	0x00000000
+  40042c:	0040043d 	.word	0x0040043d
 
-0040042c <atexit>:
-  40042c:	4601      	mov	r1, r0
-  40042e:	2000      	movs	r0, #0
-  400430:	4602      	mov	r2, r0
-  400432:	4603      	mov	r3, r0
-  400434:	f000 b816 	b.w	400464 <__register_exitproc>
+00400430 <atexit>:
+  400430:	4601      	mov	r1, r0
+  400432:	2000      	movs	r0, #0
+  400434:	4602      	mov	r2, r0
+  400436:	4603      	mov	r3, r0
+  400438:	f000 b816 	b.w	400468 <__register_exitproc>
 
-00400438 <__libc_fini_array>:
-  400438:	b538      	push	{r3, r4, r5, lr}
-  40043a:	4b08      	ldr	r3, [pc, #32]	; (40045c <__libc_fini_array+0x24>)
-  40043c:	4d08      	ldr	r5, [pc, #32]	; (400460 <__libc_fini_array+0x28>)
-  40043e:	1aed      	subs	r5, r5, r3
-  400440:	10ac      	asrs	r4, r5, #2
-  400442:	bf18      	it	ne
-  400444:	18ed      	addne	r5, r5, r3
-  400446:	d005      	beq.n	400454 <__libc_fini_array+0x1c>
-  400448:	3c01      	subs	r4, #1
-  40044a:	f855 3d04 	ldr.w	r3, [r5, #-4]!
-  40044e:	4798      	blx	r3
-  400450:	2c00      	cmp	r4, #0
-  400452:	d1f9      	bne.n	400448 <__libc_fini_array+0x10>
-  400454:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
-  400458:	f000 b866 	b.w	400528 <_fini>
-  40045c:	00400534 	.word	0x00400534
+0040043c <__libc_fini_array>:
+  40043c:	b538      	push	{r3, r4, r5, lr}
+  40043e:	4b08      	ldr	r3, [pc, #32]	; (400460 <__libc_fini_array+0x24>)
+  400440:	4d08      	ldr	r5, [pc, #32]	; (400464 <__libc_fini_array+0x28>)
+  400442:	1aed      	subs	r5, r5, r3
+  400444:	10ac      	asrs	r4, r5, #2
+  400446:	bf18      	it	ne
+  400448:	18ed      	addne	r5, r5, r3
+  40044a:	d005      	beq.n	400458 <__libc_fini_array+0x1c>
+  40044c:	3c01      	subs	r4, #1
+  40044e:	f855 3d04 	ldr.w	r3, [r5, #-4]!
+  400452:	4798      	blx	r3
+  400454:	2c00      	cmp	r4, #0
+  400456:	d1f9      	bne.n	40044c <__libc_fini_array+0x10>
+  400458:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
+  40045c:	f000 b866 	b.w	40052c <_fini>
   400460:	00400538 	.word	0x00400538
+  400464:	0040053c 	.word	0x0040053c
 
-00400464 <__register_exitproc>:
-  400464:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
-  400468:	4c26      	ldr	r4, [pc, #152]	; (400504 <__register_exitproc+0xa0>)
-  40046a:	4606      	mov	r6, r0
-  40046c:	4688      	mov	r8, r1
-  40046e:	4691      	mov	r9, r2
-  400470:	6825      	ldr	r5, [r4, #0]
-  400472:	469a      	mov	sl, r3
-  400474:	f8d5 4148 	ldr.w	r4, [r5, #328]	; 0x148
-  400478:	2c00      	cmp	r4, #0
-  40047a:	d03a      	beq.n	4004f2 <__register_exitproc+0x8e>
-  40047c:	6860      	ldr	r0, [r4, #4]
-  40047e:	281f      	cmp	r0, #31
-  400480:	dc19      	bgt.n	4004b6 <__register_exitproc+0x52>
-  400482:	1c41      	adds	r1, r0, #1
-  400484:	b186      	cbz	r6, 4004a8 <__register_exitproc+0x44>
-  400486:	eb04 0580 	add.w	r5, r4, r0, lsl #2
-  40048a:	2201      	movs	r2, #1
-  40048c:	2e02      	cmp	r6, #2
-  40048e:	f8c5 9088 	str.w	r9, [r5, #136]	; 0x88
-  400492:	fa02 f200 	lsl.w	r2, r2, r0
-  400496:	f8d4 3188 	ldr.w	r3, [r4, #392]	; 0x188
-  40049a:	ea43 0302 	orr.w	r3, r3, r2
-  40049e:	f8c4 3188 	str.w	r3, [r4, #392]	; 0x188
-  4004a2:	f8c5 a108 	str.w	sl, [r5, #264]	; 0x108
-  4004a6:	d01e      	beq.n	4004e6 <__register_exitproc+0x82>
-  4004a8:	1c83      	adds	r3, r0, #2
-  4004aa:	6061      	str	r1, [r4, #4]
-  4004ac:	2000      	movs	r0, #0
-  4004ae:	f844 8023 	str.w	r8, [r4, r3, lsl #2]
-  4004b2:	e8bd 87f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, pc}
-  4004b6:	4b14      	ldr	r3, [pc, #80]	; (400508 <__register_exitproc+0xa4>)
-  4004b8:	b303      	cbz	r3, 4004fc <__register_exitproc+0x98>
-  4004ba:	f44f 70c8 	mov.w	r0, #400	; 0x190
-  4004be:	f3af 8000 	nop.w
-  4004c2:	4604      	mov	r4, r0
-  4004c4:	b1d0      	cbz	r0, 4004fc <__register_exitproc+0x98>
-  4004c6:	f8d5 3148 	ldr.w	r3, [r5, #328]	; 0x148
-  4004ca:	2700      	movs	r7, #0
-  4004cc:	2101      	movs	r1, #1
-  4004ce:	6003      	str	r3, [r0, #0]
-  4004d0:	4638      	mov	r0, r7
-  4004d2:	6067      	str	r7, [r4, #4]
-  4004d4:	f8c5 4148 	str.w	r4, [r5, #328]	; 0x148
-  4004d8:	f8c4 7188 	str.w	r7, [r4, #392]	; 0x188
-  4004dc:	f8c4 718c 	str.w	r7, [r4, #396]	; 0x18c
-  4004e0:	2e00      	cmp	r6, #0
-  4004e2:	d0e1      	beq.n	4004a8 <__register_exitproc+0x44>
-  4004e4:	e7cf      	b.n	400486 <__register_exitproc+0x22>
-  4004e6:	f8d4 318c 	ldr.w	r3, [r4, #396]	; 0x18c
-  4004ea:	431a      	orrs	r2, r3
-  4004ec:	f8c4 218c 	str.w	r2, [r4, #396]	; 0x18c
-  4004f0:	e7da      	b.n	4004a8 <__register_exitproc+0x44>
-  4004f2:	f505 74a6 	add.w	r4, r5, #332	; 0x14c
-  4004f6:	f8c5 4148 	str.w	r4, [r5, #328]	; 0x148
-  4004fa:	e7bf      	b.n	40047c <__register_exitproc+0x18>
-  4004fc:	f04f 30ff 	mov.w	r0, #4294967295
-  400500:	e8bd 87f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, pc}
-  400504:	00400510 	.word	0x00400510
-  400508:	00000000 	.word	0x00000000
-  40050c:	00000043 	.word	0x00000043
+00400468 <__register_exitproc>:
+  400468:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
+  40046c:	4c26      	ldr	r4, [pc, #152]	; (400508 <__register_exitproc+0xa0>)
+  40046e:	4606      	mov	r6, r0
+  400470:	4688      	mov	r8, r1
+  400472:	4691      	mov	r9, r2
+  400474:	6825      	ldr	r5, [r4, #0]
+  400476:	469a      	mov	sl, r3
+  400478:	f8d5 4148 	ldr.w	r4, [r5, #328]	; 0x148
+  40047c:	2c00      	cmp	r4, #0
+  40047e:	d03a      	beq.n	4004f6 <__register_exitproc+0x8e>
+  400480:	6860      	ldr	r0, [r4, #4]
+  400482:	281f      	cmp	r0, #31
+  400484:	dc19      	bgt.n	4004ba <__register_exitproc+0x52>
+  400486:	1c41      	adds	r1, r0, #1
+  400488:	b186      	cbz	r6, 4004ac <__register_exitproc+0x44>
+  40048a:	eb04 0580 	add.w	r5, r4, r0, lsl #2
+  40048e:	2201      	movs	r2, #1
+  400490:	2e02      	cmp	r6, #2
+  400492:	f8c5 9088 	str.w	r9, [r5, #136]	; 0x88
+  400496:	fa02 f200 	lsl.w	r2, r2, r0
+  40049a:	f8d4 3188 	ldr.w	r3, [r4, #392]	; 0x188
+  40049e:	ea43 0302 	orr.w	r3, r3, r2
+  4004a2:	f8c4 3188 	str.w	r3, [r4, #392]	; 0x188
+  4004a6:	f8c5 a108 	str.w	sl, [r5, #264]	; 0x108
+  4004aa:	d01e      	beq.n	4004ea <__register_exitproc+0x82>
+  4004ac:	1c83      	adds	r3, r0, #2
+  4004ae:	6061      	str	r1, [r4, #4]
+  4004b0:	2000      	movs	r0, #0
+  4004b2:	f844 8023 	str.w	r8, [r4, r3, lsl #2]
+  4004b6:	e8bd 87f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, pc}
+  4004ba:	4b14      	ldr	r3, [pc, #80]	; (40050c <__register_exitproc+0xa4>)
+  4004bc:	b303      	cbz	r3, 400500 <__register_exitproc+0x98>
+  4004be:	f44f 70c8 	mov.w	r0, #400	; 0x190
+  4004c2:	f3af 8000 	nop.w
+  4004c6:	4604      	mov	r4, r0
+  4004c8:	b1d0      	cbz	r0, 400500 <__register_exitproc+0x98>
+  4004ca:	f8d5 3148 	ldr.w	r3, [r5, #328]	; 0x148
+  4004ce:	2700      	movs	r7, #0
+  4004d0:	2101      	movs	r1, #1
+  4004d2:	6003      	str	r3, [r0, #0]
+  4004d4:	4638      	mov	r0, r7
+  4004d6:	6067      	str	r7, [r4, #4]
+  4004d8:	f8c5 4148 	str.w	r4, [r5, #328]	; 0x148
+  4004dc:	f8c4 7188 	str.w	r7, [r4, #392]	; 0x188
+  4004e0:	f8c4 718c 	str.w	r7, [r4, #396]	; 0x18c
+  4004e4:	2e00      	cmp	r6, #0
+  4004e6:	d0e1      	beq.n	4004ac <__register_exitproc+0x44>
+  4004e8:	e7cf      	b.n	40048a <__register_exitproc+0x22>
+  4004ea:	f8d4 318c 	ldr.w	r3, [r4, #396]	; 0x18c
+  4004ee:	431a      	orrs	r2, r3
+  4004f0:	f8c4 218c 	str.w	r2, [r4, #396]	; 0x18c
+  4004f4:	e7da      	b.n	4004ac <__register_exitproc+0x44>
+  4004f6:	f505 74a6 	add.w	r4, r5, #332	; 0x14c
+  4004fa:	f8c5 4148 	str.w	r4, [r5, #328]	; 0x148
+  4004fe:	e7bf      	b.n	400480 <__register_exitproc+0x18>
+  400500:	f04f 30ff 	mov.w	r0, #4294967295
+  400504:	e8bd 87f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, pc}
+  400508:	00400514 	.word	0x00400514
+  40050c:	00000000 	.word	0x00000000
+  400510:	00000043 	.word	0x00000043
 
-00400510 <_global_impure_ptr>:
-  400510:	20400058                                X.@ 
+00400514 <_global_impure_ptr>:
+  400514:	20400058                                X.@ 
 
-00400514 <_init>:
-  400514:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
-  400516:	bf00      	nop
-  400518:	bcf8      	pop	{r3, r4, r5, r6, r7}
-  40051a:	bc08      	pop	{r3}
-  40051c:	469e      	mov	lr, r3
-  40051e:	4770      	bx	lr
+00400518 <_init>:
+  400518:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+  40051a:	bf00      	nop
+  40051c:	bcf8      	pop	{r3, r4, r5, r6, r7}
+  40051e:	bc08      	pop	{r3}
+  400520:	469e      	mov	lr, r3
+  400522:	4770      	bx	lr
 
-00400520 <__init_array_start>:
-  400520:	00400419 	.word	0x00400419
+00400524 <__init_array_start>:
+  400524:	0040041d 	.word	0x0040041d
 
-00400524 <__frame_dummy_init_array_entry>:
-  400524:	00400165                                e.@.
+00400528 <__frame_dummy_init_array_entry>:
+  400528:	00400165                                e.@.
 
-00400528 <_fini>:
-  400528:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
-  40052a:	bf00      	nop
-  40052c:	bcf8      	pop	{r3, r4, r5, r6, r7}
-  40052e:	bc08      	pop	{r3}
-  400530:	469e      	mov	lr, r3
-  400532:	4770      	bx	lr
+0040052c <_fini>:
+  40052c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+  40052e:	bf00      	nop
+  400530:	bcf8      	pop	{r3, r4, r5, r6, r7}
+  400532:	bc08      	pop	{r3}
+  400534:	469e      	mov	lr, r3
+  400536:	4770      	bx	lr
 
-00400534 <__fini_array_start>:
-  400534:	00400141 	.word	0x00400141
+00400538 <__fini_array_start>:
+  400538:	00400141 	.word	0x00400141

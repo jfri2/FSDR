@@ -41,6 +41,8 @@ int32_t fir_coeffs[FIR_LEN] = { -1318, -3829, -4009, -717, 3359, 2177, -3706, -5
 /*
  * fir_int32
  * 32-bit fixed point FIR filter
+ * 
+ * Requires fixed FIR_LEN (no dynamic allocation...yet) to be defined
  *
  * @param input: Pointer to input array to filter
  * @param output: Pointer to output array to store filtered result
@@ -49,7 +51,7 @@ int32_t fir_coeffs[FIR_LEN] = { -1318, -3829, -4009, -717, 3359, 2177, -3706, -5
  * @param num_taps: Number of FIR taps (should be length of fir_coeffs)
  * @param dot_n: n value in fixed point Qm.n notation
  */
-void fir_int32(int32_t *input, int32_t *output, uint32_t io_length, int32_t *fir_coeffs, uint32_t num_taps, uint32_t dot_n) {
+void fir_int32(int32_t *input, int32_t *output, uint32_t io_length, int32_t *fir_coeffs, uint32_t dot_n) {
     static int32_t  delay_line[FIR_LEN]  = {0};
     static uint32_t delay_line_index     =  0;
            uint32_t io_index             =  0;    // Index for input and output buffers
@@ -60,13 +62,13 @@ void fir_int32(int32_t *input, int32_t *output, uint32_t io_length, int32_t *fir
     for(io_index = 0; io_index < io_length; io_index++) {
         fir_acc = 0;
         delay_line[delay_line_index] = input[io_index];                                 // Copy input value to delay line
-        for(fir_index = 0; fir_index < num_taps; fir_index++) {                         // Convolve delay line with FIR coefficients
-            delay_val = delay_line[ mod((delay_line_index - fir_index), num_taps) ];      
+        for(fir_index = 0; fir_index < FIR_LEN; fir_index++) {                         // Convolve delay line with FIR coefficients
+            delay_val = delay_line[ mod((delay_line_index - fir_index), FIR_LEN) ];      
             fir_acc += (int64_t)(delay_val * fir_coeffs[fir_index]);                    
         }
         output[io_index] = (int32_t)(fir_acc >> dot_n);                                  // Finish fixed-point math and output FIR conv result
         delay_line_index++;                                                              
-        if(delay_line_index >= num_taps) {                                               // Reset delay line index on overflow
+        if(delay_line_index >= FIR_LEN) {                                               // Reset delay line index on overflow
             delay_line_index = 0;                                                        
         }
     }   
@@ -80,6 +82,6 @@ int main(void) {
 
     /* Replace with your application code */
     while (1) {
-        fir_int32(input, output, IO_LEN, fir_coeffs, FIR_LEN, 31);
+        fir_int32(input, output, IO_LEN, fir_coeffs, 31);
     }
 }
