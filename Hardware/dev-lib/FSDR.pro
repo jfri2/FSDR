@@ -1,4 +1,4 @@
-update=11/13/2016 3:45:51 PM
+update=11/20/2016 6:46:40 PM
 version=1
 last_client=kicad
 [pcbnew]
@@ -59,3 +59,4 @@ LibName27=atmel
 LibName28=contrib
 LibName29=valves
 LibName30=hackrf
+LibName31=Lib/FSDR_lib

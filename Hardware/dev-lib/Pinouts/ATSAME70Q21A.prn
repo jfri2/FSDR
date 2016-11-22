@@ -1,0 +1,144 @@
+     102PA0     WKUP0(1)TIOA0   A17/BA1 I2SC0_MCK
+      99PA1     WKUP1(1)TIOB0   A18     I2SC0_CK
+      93PA2     WKUP2(1)        DATRG
+      91PA3     PIODC0(2LONCOL1 PCK2
+      77PA4     WKUP3/PITCLK0   UTXD1
+      73PA5     WKUP4/PIISI_D4  URXD1
+     114PA6             PCK0    UTXD1
+      35PA7     XIN32(4)PWMC0_PWMH3
+      36PA8     XOUT32(4AFE0_ADTRG
+      75PA9     WKUP6/PIISI_D3  PWMC0_PWMFI0
+      66PA10    PIODC4(2PWMC0_PWRD
+      64PA11    WKUP7/PIPWMC0_PWPWMC1_PWML0
+      68PA12    PIODC6(2PWMC0_PWPWMC1_PWMH0
+      42PA13    PIODC7(2PWMC0_PWPWMC1_PWML1
+      51PA14    WKUP8/PIPWMC0_PWPWMC1_PWMH1
+      49PA15            TIOA1   PWMC0_PWI2SC0_WS
+      45PA16            TIOB1   PWMC0_PWI2SC0_DI
+      25PA17    AFE0_AD6PCK1    PWMC0_PWMH3
+      24PA18    AFE0_AD7PCK2    A14
+      23PA19    AFE0_AD8PWMC0_PWA15     I2SC1_MCK
+      22PA20    AFE0_AD9PWMC0_PWA16/BA0 I2SC1_CK
+      32PA21    AFE0_AD1PCK1    PWMC1_PWMFI0
+      37PA22    PIODCCLKPWMC0_PWNCS2
+      46PA23            PWMC0_PWA19     PWMC1_PWML2
+      56PA24            PWMC0_PWA20     ISI_PCK
+      59PA25            PWMC0_PWA23     MCCK
+      62PA26            TIOA2   MCDA2   PWMC1_PWMFI1
+      70PA27            TIOB2   MCDA3   ISI_D7
+     112PA28            TCLK1   MCCDA   PWMC1_PWMFI2
+     129PA29            TCLK2
+     116PA30    WKUP11(1PWMC1_PWMCDA0   I2SC0_DO
+     118PA31            PCK2    MCDA1   PWMC1_PWMH2
+      21PB0     AFE0_AD10/      RXD0    TF
+      20PB1     AFE1_AD0GTSUCOMPTXD0    TK
+      26PB2     AFE0_AD5(5)     CTS0    SPI0_NPCS0
+      31PB3     AFE0_AD2PCK2    RTS0    ISI_D2
+     105PB4     TDI(9)  PWMC0_PWMH2     TXD1
+     109PB5     TDO/TRACPWMC0_PWML0     TD
+      79PB6     SWDIO/TMS(9)
+      89PB7     SWCLK/TCK(9)
+     141PB8     XOUT(10)
+     142PB9     XIN(10)
+      87PB12    ERASE(9)GTSUCOMP        PCK0
+     144PB13    DAC0(11)PCK0    SCK0
+      11PC0     AFE1_AD9PWMC0_PWML0
+      38PC1             PWMC0_PWML1
+      39PC2             PWMC0_PWML2
+      40PC3             PWMC0_PWML3
+      41PC4
+      58PC5             TIOA6
+      54PC6             TIOB6
+      48PC7             TCLK6
+      82PC8             TIOA7
+      86PC9             TIOB7
+      90PC10            TCLK7
+      94PC11            TIOA8
+      17PC12    AFE1_AD3TIOB8   CANRX1
+      19PC13    AFE1_AD1PWMC0_PWSDA10
+      97PC14            TCLK8   CANTX1
+      18PC15    AFE1_AD2PWMC0_PWML3
+     100PC16
+     103PC17
+     111PC18            PWMC0_PWML1
+     117PC19            PWMC0_PWMH2
+     120PC20            PWMC0_PWML2
+     122PC21            PWMC0_PWMH3
+     124PC22            PWMC0_PWML3
+     127PC23            TIOA3
+     130PC24            TIOB3   SPI1_SPCK
+     133PC25            TCLK3   SPI1_NPCS0
+      13PC26    AFE1_AD7TIOA4   SPI1_MISO
+      12PC27    AFE1_AD8TIOB4   SPI1_MOSI
+      76PC28            TCLK4   SPI1_NPCS1
+      16PC29    AFE1_AD4TIOA5   SPI1_NPCS2
+      15PC30    AFE1_AD5TIOB5   SPI1_NPCS3
+      14PC31    AFE1_AD6TCLK5
+       1PD0     DAC1(11)PWMC1_PWSPI1_NPCDCD0
+     132PD1             PWMC1_PWSPI1_NPCDTR0
+     131PD2             PWMC1_PWSPI1_NPCDSR0
+     128PD3             PWMC1_PWUTXD4   RI0
+     126PD4             PWMC1_PWTRACED0 DCD2
+     125PD5             PWMC1_PWTRACED1 DTR2
+     121PD6             PWMC1_PWTRACED2 DSR2
+     119PD7             PWMC1_PWTRACED3 RI2
+     113PD8             PWMC0_PWMFI1    TRACECLK
+     110PD9             PWMC0_PWAFE1_ADTRG
+     101PD10            PWMC0_PWTD
+      98PD11            PWMC0_PWGTSUCOMPISI_D5
+      92PD12            CANTX1  SPI0_NPCISI_D6
+      88PD13                    SDA10
+      84PD14                    SDCKE
+     106PD15            RXD2    NWR1/NBS1
+      78PD16            TXD2    RAS
+      74PD17            SCK2    CAS
+      69PD18            RTS2    URXD4
+      67PD19            CTS2    UTXD4
+      65PD20            SPI0_MISGTSUCOMP
+      63PD21            SPI0_MOSTIOA11  ISI_D1
+      60PD22            SPI0_SPCTIOB11  ISI_D0
+      57PD23                    SDCK
+      55PD24            RF      TCLK11  ISI_HSYNC
+      52PD25            SPI0_NPCURXD2   ISI_VSYNC
+      53PD26            TD      UTXD2   UTXD1
+      47PD27            SPI0_NPCTWD2    ISI_D8
+      71PD28    WKUP5(1)CANRX1  TWCK2   ISI_D9
+     108PD29                    SDWE
+      34PD30    AFE0_AD0(5)             ISI_D10
+       2PD31            UTXD3   PCK2    ISI_D11
+       4PE0     AFE1_AD1TIOA9   I2SC1_WS
+       6PE1             TIOB9   I2SC1_DO
+       7PE2             TCLK9   I2SC1_DI
+      10PE3     AFE1_AD1TIOA10
+      27PE4     AFE0_AD4TIOB10
+      28PE5     AFE0_AD3TCLK10
+       3VDDOUT
+       5VDDIN
+       8VREFN
+       9VREFP
+      83NRST
+      85TST
+      30VDDIO
+      43VDDIO
+      72VDDIO
+      80VDDIO
+      96VDDIO
+     104JTAGSEL
+      29VDDCORE
+      33VDDCORE
+      50VDDCORE
+      81VDDCORE
+     107VDDCORE
+     123VDDPLL
+     134VDDUTMII
+     136HSDM
+     137HSDP
+      44GND
+      61GND
+      95GND
+     115GND
+     135GND
+     138GND
+        GNDANA                                 0
+        GNDUTMI                                0
+        GNDPLLUSB                              0
